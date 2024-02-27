@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import "../Details.scss";
+import { useState, useEffect } from "react";
 
 let DIV = styled.div`
   padding:20px;
@@ -38,6 +39,28 @@ const Details = (props) => {
 
     let find_goods = props.shoes.find((goods)=> goods.id === parseInt(id));
 
+    let [alert, setAlert] =useState(true);
+    let [inputData, setInputData] = useState("");
+
+    useEffect(()=>{
+      let Timer = setTimeout(()=>{
+        setAlert(false);
+        console.log(alert);
+      }, 3000);
+      return ()=>{clearTimeout(Timer)} // 이렇게 해주어야 한번만 뜸
+    },[alert]) // alert가 변경될때마다 실행
+
+    useEffect(()=>{
+      console.log("업데이트중...");
+    },[inputData]) // inputData가 변경될때마다 실행
+
+
+    let 재고화면 = (
+      <div className="my-alert2">
+        <p>재고가 얼마 남지 않았습니다.</p>
+      </div>
+    )
+
     console.log(find_goods.id);
     return (
         <div className='container'>
@@ -46,9 +69,10 @@ const Details = (props) => {
               Detail(상세페이지)
             </TITLE_HEAD>
           </BOX>
-          <div className="my-alert2">
-            <p>재고가 얼마 남지 않았습니다.</p>
-          </div>
+          <input onChange={(e)=>{setInputData(e.target.value)}}/>
+          {
+            alert === true ? 재고화면 : null // ; 쓰면 안됨
+          }
           
           <div className='row'>
             <div className='col-md-6'>
