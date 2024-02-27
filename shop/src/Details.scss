@@ -1,0 +1,33 @@
+$메인컬러 : #ff0000;
+.red{color: $메인컬러;}
+body{margin:0;}
+div{box-sizing: border-box;}
+div.container{
+    h4{
+        color: blue;
+    }
+    p{
+        color: green;
+    }
+}
+.my-alert{
+    background: #eee;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px;
+}
+.my-alert2{
+    @extend .my-alert;
+    background: lightblue;
+}
+
+@mixin 함수(){
+    background-color: #eee;
+    padding:15px;
+    border-radius: 5px;
+}
+
+.my-alert3{
+    @include 함수()
+}
