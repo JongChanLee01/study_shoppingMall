@@ -1,5 +1,11 @@
+import { 재고Context } from "../App";
+import { useContext } from "react";
+
 function Card(props) {
   const {shoes, i} = props; // 변수를 줄이는방법
+  let 재고 = useContext(재고Context);
+
+  console.log(재고);
     return(
       <div className='col-md-4'>
         <a href={"/detail/" + i}>
@@ -13,6 +19,8 @@ function Card(props) {
         <h4>{shoes.title}</h4>
         <p>{props.shoes.content}</p>
         <p>{props.shoes.price}원</p>
+
+        {재고[i]}
       </div>
     )
   }

@@ -5,7 +5,9 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import "../Details.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import { 재고Context } from "../App";
 
 let DIV = styled.div`
   padding:20px;
@@ -34,8 +36,10 @@ const Details = (props) => {
     // {id} = useParams();
     // id=2
     let {id} = useParams(); // {id:2}
+    let 재고 = useContext(재고Context);
 
-    console.log(props.shoes)
+
+    // console.log(props.shoes)
 
     let find_goods = props.shoes.find((goods)=> goods.id === parseInt(id));
 
@@ -108,7 +112,8 @@ const Details = (props) => {
               </div>
             </DIV>
             </div>
-            <Info 재고={props.재고}/>
+            {/* <Info 재고={props.재고}/> */}
+            <Info 재고={재고}/>
           </div>
     )
 }

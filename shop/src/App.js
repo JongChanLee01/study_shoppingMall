@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 // 경로가 없는것은 라이브러리
 // 경로가 있는것은 컴포넌트
@@ -14,12 +14,14 @@ import Details from './components/Details.js';
 import { Switch } from 'react-router-dom';
 // import axios from 'axios';
 
+export const 재고Context = React.createContext();
+
 function App() {
   // Data파일에 객체 배열 데이터들을 받아와서 shoes에 저장
   let [shoes, setShoes]  = useState(Data);
   // let getUrl = "https://codingapple1.github.io/shop/data2.json";
   // let [show, setShow] = useState(false);
-  let [재고, 재고변경] = useState([10,11,12]);
+  let [재고, 재고변경] = useState([10,11,12,5,3,2,1,2]);
 
   // const loading=()=>{
   //   return(
@@ -53,7 +55,9 @@ function App() {
       
       <Switch>
         <Route path="/" exact>
-          <Home shoes={shoes} setShoes={setShoes} />
+          <재고Context.Provider value={재고}>
+            <Home shoes={shoes} setShoes={setShoes} />
+          </재고Context.Provider>
           {/* show가 true면 로딩 아니면 null */}
           {/* {show ? loading() : null} 
           {show ? loading2 : null} 
@@ -133,7 +137,10 @@ function App() {
         </Route>
         
         <Route path="/detail/:id" exact>
-          <Details shoes={shoes} 재고={재고} 재고변경={재고변경}/>
+          {/* Provider 할당 */}
+          <재고Context.Provider value={재고}>
+            <Details shoes={shoes} 재고={재고} 재고변경={재고변경}/>
+          </재고Context.Provider>
         </Route>
       </Switch>
       
