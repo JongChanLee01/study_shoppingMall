@@ -4,9 +4,9 @@ import Profile from "./Profile.js";
 import Message from './components/Message';
 import type { Person } from './components/PersonTable'
 import PersonTable from './components/PersonTable';
-import { test1, test2, test3 } from "./test_axios1";
+// import { test1, test2, test3 } from "./test_axios1";
 // import { test1, test2, test3 } from "./test_axios2";
-// import { test1, test2, test3 } from "./test_axios3";
+import { test1, test2 } from "./test_axios3";
 
 function App() {
   let persons1 : Person [] = [
