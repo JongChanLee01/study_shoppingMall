@@ -59,7 +59,7 @@ function App() {
     // test1();
     test2();
     // test3(1);
-    // test3(400);
+    // test3(400); // 404 에러
   });
 
   return (
