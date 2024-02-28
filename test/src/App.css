@@ -1,0 +1,91 @@
+button {
+  font-size: 12pt;
+  padding: 4px 20px;
+  margin: 8px;
+}
+
+p {
+  font-size: 20pt;
+  padding: 0 20px;
+}
+
+input {
+  font-size: 12pt;
+  padding: 5px;
+  margin: 20px;
+}
+
+div#app, div#app2, div#app3 {
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 5px #aaa;
+}
+
+p {
+  font-size: 20pt;
+  color: blue;
+}
+
+#app>input {
+  width: 30px;
+  height: 30px;
+}
+
+div#hello {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: lightGreen;
+  border: 1px solid gray;
+  text-align: center;
+  font-size: 20pt;
+}
+
+select {
+  padding: 5px;
+  font-size: 15pt;
+  width: 150px;
+  margin: 10px;
+}
+
+.yellow {
+  background-color: #ffa;
+}
+
+.green {
+  background-color: #bfb;
+}
+
+.blue {
+  background-color: #bbf;
+}
+
+.red {
+  background-color: #fbb;
+}
+
+#app3 > input {
+  width: 20px;
+  height: 20px;
+}
+
+label {
+  margin-right: 30px;
+  font-size: 14pt;
+}
+
+form {
+  margin: 20px auto;
+  padding: 20px;
+  width: 350px;
+  border: 1px solid gray;
+  box-shadow: 5px 5px 5px #aaa;
+}
+
+form select {
+  font-size: 12pt;
+  padding: 5px;
+  margin: 20px;
+  width: 209px;
+}
