@@ -1,8 +1,22 @@
 import { Container } from "react-bootstrap";
-import Card from "./Card"
+import Card from "./Card";
+import axios from "axios";
 
 function Home(props) {
-    console.log(props)
+    // console.log(props)
+
+    // App.js로 옮김
+    // let getUrl = "https://codingapple1.github.io/shop/data2.json";
+    // const getData=()=>{
+    //     axios
+    //     .get(getUrl)
+    //     .then((result)=>{
+    //         console.log(result.data);
+    //     })
+    //     .catch(()=>{
+    //         console.log("접속실패....");
+    //     });
+    // }
     return (
         <div>
             <Container className='background mt-4'>
@@ -42,6 +56,37 @@ function Home(props) {
                 <p>{shoes[2].price}원</p>
                 </div> */}
             </div>
+
+            {/* 기능을 위에 함수로 올림 */}
+            {/* 잘라내서 App.js로 옮김 */}
+            {/* <button className="btn btn-primary"onClick={getData}>
+            더보기(axios)
+            </button> */}
+
+            {/* 기능을 함수로 옮기기 전 */}
+            {/* <button className="btn btn-primary"
+            onClick={()=>{
+                axios.get("https://codingapple1.github.io/shop/data2.json")
+                .then((result)=>{console.log(result.data)})
+                .catch(()=>{console.log("접속실패....")});
+            }}>
+            더보기(axios)
+            </button> */}
+
+            {/* fetch로 하는방법 */}
+            {/* <button className="btn btn-danger"
+            onClick={()=>{
+                fetch("https://codingapple1.github.io/shop/data2.json")
+                .then((result)=>{
+                    console.log(result.data)
+                    return result.json();
+                }).then((data)=>{
+                    console.log(data)
+                });
+            }}>
+            더보기(fetch)
+            </button> */}
+
             </div>
         </div> 
     )

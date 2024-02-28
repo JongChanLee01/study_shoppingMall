@@ -12,10 +12,40 @@ import { Route } from 'react-router-dom';
 import Home from './components/Home.js';
 import Details from './components/Details.js';
 import { Switch } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
   // Data파일에 객체 배열 데이터들을 받아와서 shoes에 저장
   let [shoes, setShoes]  = useState(Data);
+  let getUrl = "https://codingapple1.github.io/shop/data2.json";
+  let [show, setShow] = useState(false);
+  let [재고, 재고변경] = useState([10,11,12]);
+
+  const loading=()=>{
+    return(
+      <div>
+        <h2>loading.....</h2>
+      </div>
+    )
+  }
+  const loading2 = (<div>로딩중.....</div>);
+
+  const getData=()=>{
+      axios
+      .get(getUrl)
+      .then((result)=>{
+          // console.log(result.data);
+          setShow(true);
+          setShoes([...shoes, ...result.data])
+          setTimeout(()=>{
+            setShow(false);
+          },1000);
+      })
+      .catch(()=>{
+          console.log("접속실패....");
+          setShow(true);
+      });
+  }
 
   return (
     <div className="App">
@@ -94,11 +124,19 @@ function App() {
             </div>
           </div> */}
         </Route>
+        
+        <Route path="/detail/:id" exact>
+          <Details shoes={shoes} 재고={재고} />
+        </Route>
       </Switch>
-      
-      <Route path="/detail/:id" exact>
-        <Details shoes={shoes} />
-      </Route>
+
+      {/* show가 true면 로딩 아니면 null */}
+      {show ? loading() : null} 
+      {show ? loading2 : null} 
+
+      <button className="btn btn-primary"onClick={getData}>
+      더보기(axios)
+      </button>
       
     </div>
   );
