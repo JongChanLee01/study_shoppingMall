@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import Card from "./Card";
 import axios from "axios";
+import Route, { useState } from "react";
 
 function Home(props) {
     // console.log(props)
@@ -17,6 +18,37 @@ function Home(props) {
     //         console.log("접속실패....");
     //     });
     // }
+
+    let getUrl = "https://codingapple1.github.io/shop/data2.json";
+    let [show, setShow] = useState(false);
+
+    const loading=()=>{
+        return(
+          <div>
+            <h2>loading.....</h2>
+          </div>
+        )
+      }
+    const loading2 = (<div>로딩중.....</div>);
+
+    const getData=()=>{
+        axios
+        .get(getUrl)
+        .then((result)=>{
+            // console.log(result.data);
+            setShow(true);
+            props.setShoes([...props.shoes, ...result.data])
+            setTimeout(()=>{
+              setShow(false);
+            },1000);
+        })
+        .catch(()=>{
+            console.log("접속실패....");
+            setShow(true);
+        });
+    }
+
+
     return (
         <div>
             <Container className='background mt-4'>
@@ -88,6 +120,12 @@ function Home(props) {
             </button> */}
 
             </div>
+            {show ? loading() : null} 
+            {show ? loading2 : null} 
+
+            <button className="btn btn-primary"onClick={getData}>
+            더보기(axios)
+            </button>
         </div> 
     )
 }
