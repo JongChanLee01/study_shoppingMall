@@ -5,10 +5,12 @@ import { Table } from 'react-bootstrap';
 
 // import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Cart = (props) => {
     let state = useSelector((state)=>state)
     let dispatch = useDispatch();
+    let history = useHistory();
 
     let tableArray = state.reducer.map((a,i)=>{
     // let tableArray = props.state.map((a,i)=>{
@@ -57,6 +59,14 @@ const Cart = (props) => {
                     <td> {props.state[0].id}</td>
                 </tr> */}
             </Table>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                history.goBack();
+              }}
+            >
+              뒤로가기
+            </button>
             { state.reducer2 === true ? alert닫기 : null }
             {/* { props.alertShow == true ? alert닫기 : null } */}
         </div>
