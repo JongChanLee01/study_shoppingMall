@@ -120,7 +120,7 @@ function App() {
           </div>
         </Route> */}
         
-
+        {/* 여기서 경로를 만드는 것이므로 이후에 다른 파일에서는 이거랑 맞춰야함 */}
         <Route path="/detail" exact>
           <Details />
           {/* 아래는 Details.js로 보냄 */}
