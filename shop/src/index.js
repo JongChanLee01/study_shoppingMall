@@ -11,11 +11,37 @@ import { Provider } from 'react-redux';
 import { legacy_createStore as createStore } from 'redux';
 
 
-let store = createStore(()=>{
-  return ([
-    { id:0, name:"멋진신발", quan:2 }
-  ])
-})
+let initial = [
+    { id:0, name:"멋진신발", quan:2 },
+    { id:1, name:"더 멋진신발", quan:12 },
+    { id:2, name:"아주 멋진신발", quan:20 },
+];
+
+function reducer(state = initial, action){
+  if(action.type === "수량증가"){
+    let copy = [...state];
+    copy[action.id].quan++;
+    return copy;
+  }else if(action.type === "수량감소"){
+    let copy = [...state];
+    copy[action.id].quan--;
+
+    if(copy[action.id].quan < 0){
+      copy[action.id].quan = 0;
+    }
+    return copy;
+  }else{
+    return state;
+  }
+}
+
+let store = createStore(reducer);
+// let store = createStore(()=>{
+//   return initial;
+// });
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
