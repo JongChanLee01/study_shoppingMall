@@ -20,6 +20,15 @@ const Cart = (props) => {
         )
     })
 
+    let alert닫기 = (
+        <div className='my-alert2'>
+            <p>지금 구매하시면 20% 할인</p>
+            <button onClick={()=>props.dispatch({type:"alert닫기"})}>
+                닫기
+            </button>
+        </div>
+    );
+
     return (
         <div>
             <Table striped hover bordered>
@@ -36,14 +45,17 @@ const Cart = (props) => {
                     <td> {props.state[0].id}</td>
                 </tr> */}
             </Table>
+            { props.alertShow == true ? alert닫기 : null }
         </div>
     )
 }
 
 // export default Cart;
 function stateToProps(state){
-    return(
-        {state:state}
-    )
+    console.log(state);
+    return({
+        state:state.reducer,
+        alertShow:state.reducer2,
+    })
 }
 export default connect(stateToProps)(Cart);

@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // redux 아래 두개 임포트
 import { Provider } from 'react-redux';
-import { legacy_createStore as createStore } from 'redux';
+import { legacy_createStore as createStore, combineReducers } from 'redux';
 
 
 let initial = [
@@ -16,6 +16,17 @@ let initial = [
     { id:1, name:"더 멋진신발", quan:12 },
     { id:2, name:"아주 멋진신발", quan:20 },
 ];
+
+let alert초기값 = true;
+
+function reducer2(state = alert초기값, action){
+  if(action.type === "alert닫기"){
+    state = false;
+    return state;
+  }else{
+    return state;
+  }
+}
 
 function reducer(state = initial, action){
   if(action.type === "수량증가"){
@@ -35,12 +46,10 @@ function reducer(state = initial, action){
   }
 }
 
-let store = createStore(reducer);
+let store = createStore(combineReducers({reducer, reducer2}));
 // let store = createStore(()=>{
 //   return initial;
 // });
-
-
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
