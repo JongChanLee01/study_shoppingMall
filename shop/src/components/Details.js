@@ -8,6 +8,8 @@ import "../Details.scss";
 import { useState, useEffect, useContext } from "react";
 
 import { 재고Context } from "../App";
+import { connect, useSelector, useDispatch } from 'react-redux';
+import Cart from "./Cart";
 
 let DIV = styled.div`
   padding:20px;
@@ -24,7 +26,10 @@ let TITLE_HEAD = styled.h4`
   color:${(props)=>props.색상}
 `
 
-const Details = (props) => {
+function Details(props) {
+    let state = useSelector((state)=>state)
+    let dispatch = useDispatch();
+
     let history = useHistory();
 
     // parameter
@@ -37,7 +42,6 @@ const Details = (props) => {
     // id=2
     let {id} = useParams(); // {id:2}
     let 재고 = useContext(재고Context);
-
 
     // console.log(props.shoes)
 
@@ -92,6 +96,9 @@ const Details = (props) => {
                 <button className='btn btn-primary'
                 onClick={()=>{
                   props.재고변경([9,10,11]);
+                  dispatch({type: "항목추가",
+                    payload: { id: 3, name: "새로운상품", quan: 1}});
+                    history.push('/cart');
                 }}
                 >주문하기</button>
                 <button
@@ -105,7 +112,7 @@ const Details = (props) => {
                   className="btn btn-info"
                   onClick={()=>{
                     history.push("/");
-                    history.go();
+                    // history.go();
                   }}
                 >홈으로가기
                 </button>

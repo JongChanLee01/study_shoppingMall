@@ -29,11 +29,18 @@ function reducer2(state = alert초기값, action){
 }
 
 function reducer(state = initial, action){
-  if(action.type === "수량증가"){
+  if(action.type === "항목추가"){
+    let copy = [...state];
+    console.log("항목이 추가되었습니다.");
+    copy.push(action.payload);
+    return copy;
+  }
+  else if(action.type === "수량증가"){
     let copy = [...state];
     copy[action.id].quan++;
     return copy;
-  }else if(action.type === "수량감소"){
+  }
+  else if(action.type === "수량감소"){
     let copy = [...state];
     copy[action.id].quan--;
 
@@ -41,7 +48,8 @@ function reducer(state = initial, action){
       copy[action.id].quan = 0;
     }
     return copy;
-  }else{
+  }
+  else{
     return state;
   }
 }
@@ -54,13 +62,13 @@ let store = createStore(combineReducers({reducer, reducer2}));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
