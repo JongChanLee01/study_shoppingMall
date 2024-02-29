@@ -6,7 +6,7 @@ import type { Person } from './components/PersonTable'
 import PersonTable from './components/PersonTable';
 // import { test1, test2, test3 } from "./test_axios1";
 // import { test1, test2, test3 } from "./test_axios2";
-import { test1, test2 } from "./test_axios3";
+// import { test1, test2 } from "./test_axios3";
 
 function App() {
   let persons1 : Person [] = [
@@ -55,12 +55,24 @@ function App() {
   const [studentMajor, setStudentMajor] = useState('');
 
 
-  useEffect(()=>{
-    // test1();
-    test2();
-    // test3(1);
-    // test3(400); // 404 에러
-  });
+  // useEffect(()=>{
+  //   test1();
+  //   test2();
+  //   // test3(1);
+  //   // test3(400); // 404 에러
+  // });
+
+
+  // 0229 입력폼
+  const [name2, setName2] = useState("");
+  const [age2, setAge2] = useState(NaN);
+  const [gender2, setGender2] = useState("");
+  const [departmentId, setDepartmentId] = useState(0);
+
+
+  // 0229 입력폼 예제2
+  const [student2, setStudent2] = useState({name: "", age: NaN, gender: "", departmentId: 0});
+  const handler = (e: any) => setStudent2({...student2, [e.target.name]: e.target.value});
 
   return (
     <div className="App">
@@ -162,6 +174,56 @@ function App() {
           <span>학과 : </span>{studentMajor}<br/>
         </div>
       </form>
+      <hr/>
+
+      <div id="app4">
+        <h1>입력폼</h1>
+        <div className="control">
+          <input type="text" placeholder='이름' name='name' onChange={handler} />
+          {/* <input type="text" placeholder='이름' onChange={(e)=>setName2(e.target.value)} value={name2} /> */}
+        </div>
+
+        <div className="control">
+          <input type="number" placeholder='나이' min="0" step="1"
+          name='age' onChange={handler} value={student2.age} />
+          {/* <input type="number" placeholder='나이' min="0" step="1"
+          onChange={(e)=>setAge2(parseInt(e.target.value))} value={age2} /> */}
+        </div>
+
+        <div className="control">
+          <label>
+            <input type="radio" name='gender' value="남자" onChange={handler} checked={student2.gender === "남자"} />
+            {/* <input type="radio" name='gender' onChange={(e)=>setGender2("남자")} checked={gender2 === "남자"} /> */}
+            <span>남자</span>
+          </label>
+          <label>
+            <input type="radio" name='gender' value="여자" onChange={handler} checked={student2.gender === "여자"} />
+            {/* <input type="radio" name='gender' onChange={(e)=>setGender2("여자")} checked={gender2 === "여자"} /> */}
+            <span>여자</span>
+          </label>
+        </div>
+
+        <select value={student2.departmentId} name='departmentId' onChange={handler}>
+        {/* <select value={departmentId}
+        onChange={(e)=>setDepartmentId(parseInt(e.target.value))}> */}
+          <option value={0}>학과를 선택하세요</option>
+          <option value={1}>소프트웨어</option>
+          <option value={2}>컴퓨터공학</option>
+          <option value={3}>정보통신</option>
+          <option value={4}>인공지능</option>
+        </select>
+        <hr/>
+        <h1>입력된 값</h1>
+        <div className="control">이름: {student2.name}</div>
+        <div className="control">나이: {student2.age}</div>
+        <div className="control">성별: {student2.gender}</div>
+        <div className="control">학과: {student2.departmentId}</div>
+        {/* <div className="control">이름: {name2}</div>
+        <div className="control">나이: {age2}</div>
+        <div className="control">성별: {gender2}</div>
+        <div className="control">학과: {departmentId}</div> */}
+      </div>
+      <hr/>
     </div>
   );
 }

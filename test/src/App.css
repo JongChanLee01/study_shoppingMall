@@ -15,7 +15,9 @@ input {
   margin: 20px;
 }
 
-div#app, div#app2, div#app3 {
+div#app,
+div#app2,
+div#app3 {
   margin: 20px auto;
   padding: 20px;
   width: 300px;
@@ -65,7 +67,7 @@ select {
   background-color: #fbb;
 }
 
-#app3 > input {
+#app3>input {
   width: 20px;
   height: 20px;
 }
@@ -88,4 +90,36 @@ form select {
   padding: 5px;
   margin: 20px;
   width: 209px;
+}
+
+
+#app4 {
+  margin: 20px auto;
+  padding: 20px;
+  width: 300px;
+
+  border: 1px solid gray;
+  box-shadow: 4px 4px 4px #aaa;
+  font-size: 10pt;
+}
+
+#app4 h1 {
+  font-size: 15pt;
+}
+
+div.control {
+  margin-bottom: 1em;
+}
+
+.control input {
+  padding: 0.3em;
+}
+
+.control select {
+  padding: 0.3em;
+  margin-bottom: 1em;
+}
+
+#app4 hr {
+  margin: 2em 0;
 }
